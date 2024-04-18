@@ -54,9 +54,9 @@ public class AstroLogAdapter extends ArrayAdapter {
 
         // Mostrar fecha
         TextView fechaTextView = convertView.findViewById(R.id.AstroTimeTextView);
-        /*SimpleDateFormat format = new SimpleDateFormat("HH:mm");
-        String fecha = format.format(item.fecha);*/
-        fechaTextView.setText(item.fecha.toString());
+        SimpleDateFormat format = new SimpleDateFormat("HH:mm");
+        String fecha = format.format(item.fecha);
+        fechaTextView.setText(fecha);
         return convertView;
     }
 }

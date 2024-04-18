@@ -1,6 +1,7 @@
 package com.prueba.astrolog;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -43,19 +44,19 @@ public class AstroLogAdapter extends ArrayAdapter {
         nombreTextView.setText(item.name);
 
         // Poner la foto
-        ImageView fotoImageView = convertView.findViewById(R.id.AstroImageView);
-        fotoImageView.setImageDrawable(context.getDrawable(item.image));
+        /*try {
+            ImageView fotoImageView = convertView.findViewById(R.id.AstroImageView);
+            fotoImageView.setImageDrawable(context.getDrawable(item.image));
+        } catch (Exception e) {
+            ImageView fotoImageView = convertView.findViewById(R.id.AstroImageView);
+            fotoImageView.setImageDrawable(context.getDrawable(R.drawable.cometa));
+        }*/
 
         // Mostrar fecha
         TextView fechaTextView = convertView.findViewById(R.id.AstroTimeTextView);
-        SimpleDateFormat format = new SimpleDateFormat("HH:mm");
-        String fecha = format.format(item.fecha);
-        fechaTextView.setText(fecha);
-
-        // Cambiar parámetros de posición del layout
-        LinearLayout linearLayout = (LinearLayout) convertView;
-        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-        linearLayout.setLayoutParams(params);
+        /*SimpleDateFormat format = new SimpleDateFormat("HH:mm");
+        String fecha = format.format(item.fecha);*/
+        fechaTextView.setText(item.fecha.toString());
         return convertView;
     }
 }

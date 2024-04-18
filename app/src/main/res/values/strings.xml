@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">AstroLog</string>
+    <string name="astro_log">Astro-log</string>
+    <string name="plusAdd">+</string>
+</resources>

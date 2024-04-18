@@ -1,0 +1,251 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/stars"
+    tools:context=".AddLog">
+
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="350dp"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/space"
+        android:text="Guardar en log"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/dateDP" />
+
+    <EditText
+        android:id="@+id/editTextText"
+        android:layout_width="250dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="60dp"
+        android:layout_marginBottom="50dp"
+        android:background="@drawable/roundcorner"
+        android:ems="10"
+        android:hint="Nombre..."
+        android:inputType="text"
+        android:paddingStart="10dp"
+        app:layout_constraintBottom_toTopOf="@+id/tableLayout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TableLayout
+        android:id="@+id/tableLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="60dp"
+        android:layout_marginBottom="45dp"
+        android:background="@color/Empty"
+        app:layout_constraintBottom_toTopOf="@+id/textView4"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextText">
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="80dp"
+                android:baselineAligned="false"
+                android:orientation="horizontal">
+
+                <ImageButton
+                    android:id="@+id/starButton"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/roundcorner"
+                    android:foreground="@color/Empty"
+                    android:scrollbarThumbHorizontal="@color/Empty"
+                    android:scrollbarThumbVertical="@color/Empty"
+                    android:src="@drawable/estrella"
+                    tools:src="@drawable/estrella"
+                    tools:srcCompat="@drawable/estrella" />
+
+                <ImageButton
+                    android:id="@+id/moonButton"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:background="@drawable/selected"
+                    android:src="@drawable/luna"
+                    tools:src="@drawable/luna"
+                    tools:srcCompat="@drawable/luna" />
+
+                <ImageButton
+                    android:id="@+id/planetButton"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/roundcorner"
+                    android:src="@drawable/planeta"
+                    tools:src="@drawable/planeta"
+                    tools:srcCompat="@drawable/planeta" />
+
+                <ImageButton
+                    android:id="@+id/sateliteButton"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/roundcorner"
+                    android:src="@drawable/satelite"
+                    tools:src="@drawable/satelite"
+                    tools:srcCompat="@drawable/satelite" />
+            </LinearLayout>
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="80dp"
+                android:orientation="horizontal">
+
+                <ImageButton
+                    android:id="@+id/cometButton"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/roundcorner"
+                    android:src="@drawable/cometa"
+                    tools:src="@drawable/cometa"
+                    tools:srcCompat="@drawable/cometa" />
+
+                <ImageButton
+                    android:id="@+id/nebulosaButton"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/roundcorner"
+                    android:src="@drawable/nube_cosmica"
+                    tools:src="@drawable/nube_cosmica"
+                    tools:srcCompat="@drawable/nube_cosmica" />
+
+                <ImageButton
+                    android:id="@+id/constellationButton"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/roundcorner"
+                    android:src="@drawable/constellation"
+                    tools:src="@drawable/constellation"
+                    tools:srcCompat="@drawable/constellation" />
+
+                <ImageButton
+                    android:id="@+id/shootingStarButton"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/roundcorner"
+                    android:src="@drawable/estrella_fugaz"
+                    tools:src="@drawable/estrella_fugaz"
+                    tools:srcCompat="@drawable/estrella_fugaz" />
+            </LinearLayout>
+        </TableRow>
+
+    </TableLayout>
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@color/space"
+        android:padding="10dp"
+        android:text=" Categoría "
+        android:textAlignment="center"
+        android:textColor="@color/stars"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/tableLayout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextText" />
+
+    <TextView
+        android:id="@+id/textView6"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@color/space"
+        android:padding="10dp"
+        android:text=" Registrar observación "
+        android:textAlignment="center"
+        android:textColor="@color/stars"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/editTextText"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:layout_marginBottom="20dp"
+        android:background="@color/space"
+        android:padding="10dp"
+        android:text="Fecha en calendario "
+        android:textAlignment="center"
+        android:textColor="@color/stars"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/dateDP"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tableLayout" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="380dp"
+        android:layout_height="135dp"
+        android:background="@drawable/roundcorner"
+        app:layout_constraintBottom_toTopOf="@+id/button2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.493"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView4"
+        app:layout_constraintVertical_bias="0.428">
+
+        <TimePicker
+            android:id="@+id/timeTP"
+            android:layout_width="220dp"
+            android:layout_height="0dp"
+            android:headerBackground="@drawable/roundcorner"
+            android:timePickerMode="spinner"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/dateDP"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <DatePicker
+            android:id="@+id/dateDP"
+            android:layout_width="150dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="5dp"
+            android:calendarViewShown="false"
+            android:datePickerMode="spinner"
+            android:headerBackground="@color/space"
+            android:startYear="2024"
+            android:textAlignment="center"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/timeTP"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="1.0" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

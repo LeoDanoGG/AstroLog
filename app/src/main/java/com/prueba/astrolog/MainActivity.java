@@ -33,6 +33,7 @@ public class MainActivity extends AppCompatActivity {
         // Agregar log de prueba
         AstroLista.add(new AstroItem(R.drawable.estrella, "El Sol", new Date()));
         AstroLista.add(new AstroItem(R.drawable.cometa, "Cometa Halley", new Date()));
+        AddNewLog();
         // Vincular la vista de cada fila a los datos
         adapter = new AstroLogAdapter(this, R.layout.astrolog_item, AstroLista);
         // Vincular el adapta a la vista del listado
@@ -44,5 +45,13 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(AddLog);
             }
         });
+    }
+    public void AddNewLog() {
+        Intent intent = getIntent();
+        Bundle parametros = getIntent().getExtras();
+        if (parametros != null) {
+            Date newDay = (Date) parametros.getSerializable("Day");
+            AstroLista.add(new AstroItem(intent.getIntExtra("Icon",R.drawable.estrella), intent.getStringExtra("Name"), newDay));
+        }
     }
 }

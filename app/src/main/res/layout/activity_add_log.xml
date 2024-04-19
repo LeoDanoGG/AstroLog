@@ -11,6 +11,7 @@
         android:id="@+id/AddButton"
         android:layout_width="350dp"
         android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
         android:layout_marginBottom="20dp"
         android:backgroundTint="@color/space"
         android:focusable="false"
@@ -18,7 +19,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/dateDP" />
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout" />
 
     <EditText
         android:id="@+id/LogName"
@@ -264,7 +265,7 @@
             android:id="@+id/timeTP"
             android:layout_width="220dp"
             android:layout_height="0dp"
-            android:layout_marginEnd="205dp"
+            android:layout_marginEnd="210dp"
             android:focusable="false"
             android:headerBackground="@drawable/roundcorner"
             android:timePickerMode="spinner"

@@ -4,6 +4,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.KeyEvent;
@@ -15,6 +17,8 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.TimePicker;
+
+import java.util.Date;
 
 /**
  * Aplicación para guardar registos astronómicos
@@ -28,7 +32,9 @@ public class AddLog extends AppCompatActivity {
     ImageButton[] AstroIcons = new ImageButton[8];
     Boolean[] IconSelected = new Boolean[8];
     Boolean correct = false;
+    Date calendarDay = new Date();
     Button AddToLog;
+
     @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -79,6 +85,7 @@ public class AddLog extends AppCompatActivity {
                 @Override
                 public void onDateChanged(DatePicker datePicker, int year, int month, int day) {
                 // Hacer algo con la fecha elegida
+                    calendarDay = new Date(year,month,day);
                 }
             });
         }
@@ -88,6 +95,8 @@ public class AddLog extends AppCompatActivity {
             @Override
             public void onTimeChanged(TimePicker timePicker, int i, int i1) {
             // Hacer algo con la hora elegida
+                calendarDay.setHours(i);
+                calendarDay.setMinutes(i1);
             }
         });
         // Botón de agregar
@@ -95,8 +104,29 @@ public class AddLog extends AppCompatActivity {
         AddToLog.setOnClickListener(view -> AddLogManager());
     }
     public void AddLogManager() {
-       if (!correct) IconHint.setText("Selecciona un icono antes de guardar");
-       else if (LogName != null) IconHint.setText("Tienes que guardarlo con nombre");
+        if (!correct) IconHint.setText("Selecciona un icono antes de guardar");
+        else if (LogName == null) IconHint.setText("Tienes que guardarlo con nombre");
+        else AddLog();
+    }
+    public void AddLog() {
+        int Icon = IsAnyTrue(IconSelected);
+        AstroItem nuevo = new AstroItem(AstroIcons[Icon].getDrawingCacheBackgroundColor(),LogName.getText().toString(), calendarDay);
+        Intent GoBack = new Intent(AddLog.this, MainActivity.class);
+        Drawable hola = AstroIcons[Icon].getDrawable();
+        //GoBack.putExtra("Icon", hola);
+        GoBack.putExtra("Name", LogName.getText().toString());
+        Bundle bundle = new Bundle();
+        bundle.putSerializable("Day", calendarDay);
+        GoBack.putExtras(bundle);
+        startActivity(GoBack);
+    }
+    public int IsAnyTrue(Boolean[] array) {
+        for (int i = 0; i < array.length; i++) {
+            if (array[i]) {
+                return i; // Devuelve el índice tan pronto como encuentres un valor true en el array
+            }
+        }
+        return -1; // Si no se encuentra ningún valor true en el array, devuelve -1
     }
     public void IconManager(int icon) {
         for (int i = 0; i < AstroIcons.length; i++) {

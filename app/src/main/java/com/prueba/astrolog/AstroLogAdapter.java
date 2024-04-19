@@ -44,13 +44,13 @@ public class AstroLogAdapter extends ArrayAdapter {
         nombreTextView.setText(item.name);
 
         // Poner la foto
-        /*try {
+        try {
             ImageView fotoImageView = convertView.findViewById(R.id.AstroImageView);
             fotoImageView.setImageDrawable(context.getDrawable(item.image));
         } catch (Exception e) {
             ImageView fotoImageView = convertView.findViewById(R.id.AstroImageView);
             fotoImageView.setImageDrawable(context.getDrawable(R.drawable.cometa));
-        }*/
+        }
 
         // Mostrar fecha
         TextView fechaTextView = convertView.findViewById(R.id.AstroTimeTextView);

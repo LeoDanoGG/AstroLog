@@ -95,7 +95,8 @@ public class AddLog extends AppCompatActivity {
         AddToLog.setOnClickListener(view -> AddLogManager());
     }
     public void AddLogManager() {
-       if (!correct) IconHint.setText("Selecciona un tipo de astro antes de guardar");
+       if (!correct) IconHint.setText("Selecciona un icono antes de guardar");
+       else if (LogName != null) IconHint.setText("Tienes que guardarlo con nombre");
     }
     public void IconManager(int icon) {
         for (int i = 0; i < AstroIcons.length; i++) {

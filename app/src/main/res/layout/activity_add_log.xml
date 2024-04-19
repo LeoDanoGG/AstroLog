@@ -25,7 +25,7 @@
         android:layout_width="250dp"
         android:layout_height="50dp"
         android:layout_marginTop="70dp"
-        android:layout_marginBottom="50dp"
+        android:layout_marginBottom="25dp"
         android:background="@drawable/roundcorner"
         android:ems="10"
         android:hint="Nombre..."
@@ -169,6 +169,7 @@
         android:id="@+id/TypeLogTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textSize="20sp"
         app:layout_constraintBottom_toTopOf="@+id/textView4"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
@@ -216,8 +217,6 @@
         android:id="@+id/textView4"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
-        android:layout_marginBottom="20dp"
         android:background="@color/space"
         android:focusable="false"
         android:padding="10dp"
@@ -226,14 +225,15 @@
         android:textColor="@color/stars"
         android:textSize="16sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/dateDP"
+        app:layout_constraintBottom_toTopOf="@+id/constraintLayout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tableLayout" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="380dp"
+        android:id="@+id/constraintLayout"
+        android:layout_width="0dp"
         android:layout_height="135dp"
         android:layout_marginTop="15dp"
         android:background="@drawable/roundcorner"
@@ -245,34 +245,34 @@
         app:layout_constraintTop_toBottomOf="@+id/textView4"
         app:layout_constraintVertical_bias="0.428">
 
+        <DatePicker
+            android:id="@+id/dateDP"
+            android:layout_width="220dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="10dp"
+            android:calendarViewShown="false"
+            android:datePickerMode="spinner"
+            android:headerBackground="@color/space"
+            android:textAlignment="center"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/timeTP"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0" />
+
         <TimePicker
             android:id="@+id/timeTP"
             android:layout_width="220dp"
             android:layout_height="0dp"
+            android:layout_marginEnd="205dp"
             android:focusable="false"
             android:headerBackground="@drawable/roundcorner"
             android:timePickerMode="spinner"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/dateDP"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.0" />
 
-        <DatePicker
-            android:id="@+id/dateDP"
-            android:layout_width="150dp"
-            android:layout_height="0dp"
-            android:layout_marginStart="5dp"
-            android:calendarViewShown="false"
-            android:datePickerMode="spinner"
-            android:headerBackground="@color/space"
-            android:startYear="2024"
-            android:textAlignment="center"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/timeTP"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="1.0" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 

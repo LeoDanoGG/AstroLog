@@ -33,10 +33,8 @@ public class MainActivity extends AppCompatActivity {
         // Agregar log de prueba
         AstroLista.add(new AstroItem(R.drawable.estrella, "El Sol", new Date()));
         AstroLista.add(new AstroItem(R.drawable.cometa, "Cometa Halley", new Date()));
-
         // Vincular la vista de cada fila a los datos
         adapter = new AstroLogAdapter(this, R.layout.astrolog_item, AstroLista);
-
         // Vincular el adapta a la vista del listado
         AstroList.setAdapter(adapter);
         addButton.setOnClickListener(new View.OnClickListener() {

@@ -8,9 +8,10 @@
     tools:context=".AddLog">
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/AddButton"
         android:layout_width="350dp"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
         android:backgroundTint="@color/space"
         android:focusable="false"
         android:text="Guardar en log"
@@ -23,7 +24,7 @@
         android:id="@+id/LogName"
         android:layout_width="250dp"
         android:layout_height="50dp"
-        android:layout_marginTop="60dp"
+        android:layout_marginTop="70dp"
         android:layout_marginBottom="50dp"
         android:background="@drawable/roundcorner"
         android:ems="10"
@@ -165,21 +166,15 @@
     </TableLayout>
 
     <TextView
-        android:id="@+id/textView2"
-        android:layout_width="0dp"
+        android:id="@+id/TypeLogTextView"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@color/space"
-        android:focusable="false"
-        android:padding="10dp"
-        android:text=" Categoría "
-        android:textAlignment="center"
-        android:textColor="@color/stars"
-        android:textSize="16sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/tableLayout"
+        app:layout_constraintBottom_toTopOf="@+id/textView4"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/LogName" />
+        app:layout_constraintTop_toBottomOf="@+id/tableLayout"
+        app:layout_constraintVertical_bias="0.428" />
 
     <TextView
         android:id="@+id/textView6"
@@ -199,6 +194,23 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@color/space"
+        android:focusable="false"
+        android:padding="10dp"
+        android:text=" Categoría "
+        android:textAlignment="center"
+        android:textColor="@color/stars"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/tableLayout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/LogName" />
 
     <TextView
         android:id="@+id/textView4"
@@ -223,9 +235,10 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="380dp"
         android:layout_height="135dp"
+        android:layout_marginTop="15dp"
         android:background="@drawable/roundcorner"
         android:focusable="false"
-        app:layout_constraintBottom_toTopOf="@+id/button2"
+        app:layout_constraintBottom_toTopOf="@+id/AddButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.493"
         app:layout_constraintStart_toStartOf="parent"

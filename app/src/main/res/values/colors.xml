@@ -4,6 +4,6 @@
     <color name="white">#FFFFFFFF</color>
     <color name="space">#000F6E</color>
     <color name="stars">#F0E164</color>
-    <color name="meteor">#FFA000</color>
+    <color name="meteor">#FF5723</color>
     <color name="Empty">#00000000</color>
 </resources>

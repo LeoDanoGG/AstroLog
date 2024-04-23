@@ -3,12 +3,14 @@ package com.prueba.astrolog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
-import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -20,7 +22,7 @@ import java.util.Date;
 public class MainActivity extends AppCompatActivity {
 
     ListView AstroList;
-    ArrayList<AstroItem> AstroLista = new ArrayList<>();
+    Astro_List AstroLista;
     Button addButton;
     AstroLogAdapter adapter;
     @SuppressLint("MissingInflatedId")
@@ -30,12 +32,10 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         addButton = findViewById(R.id.astroAdd);
         AstroList = findViewById(R.id.AstroListView);
-        // Agregar log de prueba
-        AstroLista.add(new AstroItem(R.drawable.estrella, "El Sol", new Date()));
-        AstroLista.add(new AstroItem(R.drawable.cometa, "Cometa Halley", new Date()));
+        LoadLogs();
         AddNewLog();
         // Vincular la vista de cada fila a los datos
-        adapter = new AstroLogAdapter(this, R.layout.astrolog_item, AstroLista);
+        adapter = new AstroLogAdapter(this, R.layout.astrolog_item, AstroLista.items);
         // Vincular el adapta a la vista del listado
         AstroList.setAdapter(adapter);
         addButton.setOnClickListener(new View.OnClickListener() {
@@ -45,13 +45,45 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(AddLog);
             }
         });
+        AstroList.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+                // Obtener el elemento seleccionado
+                String elementoSeleccionado = AstroLista.items.get(position).name;
+                // Eliminar el elemento del ArrayList
+                AstroLista.items.remove(position);
+                AstroList.deferNotifyDataSetChanged();
+                return true; // Indica que se ha manejado el evento
+            }
+        });
     }
-    public void AddNewLog() {
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        SaveLogs();
+    }
+        public void AddNewLog() {
         Intent intent = getIntent();
         Bundle parametros = getIntent().getExtras();
         if (parametros != null) {
             Date newDay = (Date) parametros.getSerializable("Day");
-            AstroLista.add(new AstroItem(intent.getIntExtra("Icon",R.drawable.estrella), intent.getStringExtra("Name"), newDay));
+            AstroLista.items.add(new AstroItem(intent.getIntExtra("Icon",R.drawable.estrella), intent.getStringExtra("Name"), newDay));
+        }
+    }
+    public void SaveLogs() {
+        String json = AstroLista.ToJSON();
+        SharedPreferences preferences = getSharedPreferences("Registros", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = preferences.edit();
+        editor.putString("conversaciones", json);
+        editor.commit();
+    }
+    public void LoadLogs() {
+        SharedPreferences preferences = getSharedPreferences("Registros", Context.MODE_PRIVATE);
+        String json = preferences.getString("conversaciones", null);
+        if (json == null) {
+            AstroLista = new Astro_List();
+        } else {
+            AstroLista = Astro_List.ToJava(json);
         }
     }
 }

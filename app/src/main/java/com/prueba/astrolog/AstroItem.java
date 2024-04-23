@@ -1,7 +1,6 @@
 package com.prueba.astrolog;
 
 import android.media.Image;
-
 import java.util.Date;
 
 public class AstroItem {

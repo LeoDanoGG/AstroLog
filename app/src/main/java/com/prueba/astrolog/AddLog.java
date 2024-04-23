@@ -30,6 +30,7 @@ public class AddLog extends AppCompatActivity {
     TextView IconHint;
     String[] hint = new String[8];
     ImageButton[] AstroIcons = new ImageButton[8];
+    int[] Icon = new int[8];
     Boolean[] IconSelected = new Boolean[8];
     Boolean correct = false;
     Date calendarDay = new Date();
@@ -65,6 +66,7 @@ public class AddLog extends AppCompatActivity {
         AstroIcons[6] = findViewById(R.id.constellationButton);
         AstroIcons[7] = findViewById(R.id.shootingStarButton);
         IconHint = findViewById(R.id.TypeLogTextView);
+        // Pistas
         hint[0] = "Estrella";
         hint[1] = "Luna";
         hint[2] = "Planeta";
@@ -73,6 +75,15 @@ public class AddLog extends AppCompatActivity {
         hint[5] = "Nebulosa";
         hint[6] = "Constelación";
         hint[7] = "Estrella fugaz";
+        // Fotos
+        Icon[0] = R.drawable.estrella;
+        Icon[1] = R.drawable.luna;
+        Icon[2] = R.drawable.planeta;
+        Icon[3] = R.drawable.satelite;
+        Icon[4] = R.drawable.cometa;
+        Icon[5] = R.drawable.nube_cosmica;
+        Icon[6] = R.drawable.constellation;
+        Icon[7] = R.drawable.estrella_fugaz;
         // Botones
         for (int b = 0; b < AstroIcons.length; b++) {
             final int LogType = b;
@@ -107,13 +118,14 @@ public class AddLog extends AppCompatActivity {
         if (!correct) IconHint.setText("Selecciona un icono antes de guardar");
         else if (LogName == null) IconHint.setText("Tienes que guardarlo con nombre");
         else AddLog();
+
     }
     public void AddLog() {
-        int Icon = IsAnyTrue(IconSelected);
-        AstroItem nuevo = new AstroItem(AstroIcons[Icon].getDrawingCacheBackgroundColor(),LogName.getText().toString(), calendarDay);
+        int draw = IsAnyTrue(IconSelected);
+        //AstroItem nuevo = new AstroItem(AstroIcons[Icon].getDrawingCacheBackgroundColor(),LogName.getText().toString(), calendarDay);
         Intent GoBack = new Intent(AddLog.this, MainActivity.class);
-        Drawable hola = AstroIcons[Icon].getDrawable();
-        //GoBack.putExtra("Icon", hola);
+        int imagen = Icon[draw];
+        GoBack.putExtra("Icon", imagen);
         GoBack.putExtra("Name", LogName.getText().toString());
         Bundle bundle = new Bundle();
         bundle.putSerializable("Day", calendarDay);

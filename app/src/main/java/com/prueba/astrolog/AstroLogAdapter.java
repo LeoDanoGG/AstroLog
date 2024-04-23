@@ -36,7 +36,7 @@ public class AstroLogAdapter extends ArrayAdapter {
         LayoutInflater layoutInflater = LayoutInflater.from(context);
         convertView = layoutInflater.inflate(idLayoutItem, parent, false);
 
-        // Persona en esta posición
+        // Astro en la lista
         AstroItem item = this.item.get(position);
 
         // Poner el nombre
@@ -54,9 +54,9 @@ public class AstroLogAdapter extends ArrayAdapter {
 
         // Mostrar fecha
         TextView fechaTextView = convertView.findViewById(R.id.AstroTimeTextView);
-        //SimpleDateFormat format = new SimpleDateFormat("dd MMMM yyyy HH:mm");
-        //String fecha = format.format(item.fecha);
-        fechaTextView.setText(item.fecha.toString());
+        SimpleDateFormat format = new SimpleDateFormat("dd MMMM yy HH:mm");
+        String fecha = format.format(item.fecha);
+        fechaTextView.setText(fecha);
         return convertView;
     }
 }

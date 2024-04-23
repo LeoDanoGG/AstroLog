@@ -35,14 +35,11 @@ public class AstroLogAdapter extends ArrayAdapter {
         // Crear vista de esta fila
         LayoutInflater layoutInflater = LayoutInflater.from(context);
         convertView = layoutInflater.inflate(idLayoutItem, parent, false);
-
         // Astro en la lista
         AstroItem item = this.item.get(position);
-
         // Poner el nombre
         TextView nombreTextView = convertView.findViewById(R.id.AstroNameTextView);
         nombreTextView.setText(item.name);
-
         // Poner la foto
         try {
             ImageView fotoImageView = convertView.findViewById(R.id.AstroImageView);
@@ -51,7 +48,6 @@ public class AstroLogAdapter extends ArrayAdapter {
             ImageView fotoImageView = convertView.findViewById(R.id.AstroImageView);
             fotoImageView.setImageDrawable(context.getDrawable(R.drawable.cometa));
         }
-
         // Mostrar fecha
         TextView fechaTextView = convertView.findViewById(R.id.AstroTimeTextView);
         SimpleDateFormat format = new SimpleDateFormat("dd MMMM yy HH:mm");

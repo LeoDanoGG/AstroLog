@@ -9,9 +9,6 @@ public class Astro_List {
 
     public Astro_List() {
         items  = new ArrayList<>();
-        // Agregar log de prueba
-        items.add(new AstroItem(R.drawable.estrella, "El Sol", new Date()));
-        items.add(new AstroItem(R.drawable.cometa, "Cometa Halley", new Date()));
     }
     public String ToJSON() {
         Gson gson = new Gson();

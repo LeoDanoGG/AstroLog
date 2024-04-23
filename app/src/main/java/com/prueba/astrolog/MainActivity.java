@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -22,6 +23,7 @@ import java.util.Date;
 public class MainActivity extends AppCompatActivity {
 
     ListView AstroList;
+    TextView removeAlert;
     Astro_List AstroLista;
     Button addButton;
     AstroLogAdapter adapter;
@@ -32,6 +34,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         addButton = findViewById(R.id.astroAdd);
         AstroList = findViewById(R.id.AstroListView);
+        removeAlert = findViewById(R.id.RemoveAlert);
         LoadLogs();
         AddNewLog();
         // Vincular la vista de cada fila a los datos
@@ -49,13 +52,25 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
                 // Obtener el elemento seleccionado
-                String elementoSeleccionado = AstroLista.items.get(position).name;
-                // Eliminar el elemento del ArrayList
+                String elemento = AstroLista.items.get(position).name;
+                removeAlert.setText(elemento + " ha sido eliminado");
+                // Eliminar el registro
                 AstroLista.items.remove(position);
-                AstroList.deferNotifyDataSetChanged();
+                // Notificar al adaptador del cambio
+                adapter.notifyDataSetChanged();
+
                 return true; // Indica que se ha manejado el evento
             }
         });
+        AstroList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                HideWarn();
+            }
+        });
+    }
+    public void HideWarn() {
+        removeAlert.setText("");
     }
     @Override
     protected void onDestroy() {
@@ -68,6 +83,7 @@ public class MainActivity extends AppCompatActivity {
         if (parametros != null) {
             Date newDay = (Date) parametros.getSerializable("Day");
             AstroLista.items.add(new AstroItem(intent.getIntExtra("Icon",R.drawable.estrella), intent.getStringExtra("Name"), newDay));
+            SaveLogs();
         }
     }
     public void SaveLogs() {

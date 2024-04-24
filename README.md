@@ -37,4 +37,4 @@ y después editándole mediante un `TimePicker` y un `DatePicker`.
 | TimePicker (dentro del `xml`)| DatePicker (dentro del `xml`)|
 | ------- | ------- |
 | Modifica la hora | Modifica la fecha |
-| Formato de 12 horas (hora, minutos) | Formato europeo (día, mes y año) |
+| Formato de 24 horas (hora, minutos) | Formato europeo (día, mes y año) |

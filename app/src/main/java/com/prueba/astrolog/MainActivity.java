@@ -24,6 +24,7 @@ public class MainActivity extends AppCompatActivity {
 
     ListView AstroList;
     TextView titleLog;
+    TextView scrollAlert;
     TextView removeAlert;
     Astro_List AstroLista;
     Button addButton;
@@ -36,6 +37,7 @@ public class MainActivity extends AppCompatActivity {
         addButton = findViewById(R.id.astroAdd);
         AstroList = findViewById(R.id.AstroListView);
         titleLog = findViewById(R.id.TitleTextView);
+        scrollAlert = findViewById(R.id.ScrollAlertTextView);
         removeAlert = findViewById(R.id.RemoveAlert);
         LoadLogs();
         ShowLogCount();
@@ -74,12 +76,11 @@ public class MainActivity extends AppCompatActivity {
         });
     }
     public void ShowLogCount() {
-        try {
-            titleLog.setText("Has registrado " + AstroLista.items.size() + " astros");
-        } catch (Exception e) {
-            titleLog.setText("Has registrado astros");
-        }
+        titleLog.setText("Has registrado " + AstroLista.items.size() + " astros");
+        if (AstroLista.items.size() > 7) scrollAlert.setText("Sube y baja en la lista para observar todos los registros");
+        else scrollAlert.setText("");
     }
+
     public void HideWarn() {
         removeAlert.setText("");
     }
@@ -95,6 +96,7 @@ public class MainActivity extends AppCompatActivity {
             Date newDay = (Date) parametros.getSerializable("Day");
             AstroLista.items.add(new AstroItem(intent.getIntExtra("Icon",R.drawable.estrella), intent.getStringExtra("Name"), newDay));
             SaveLogs();
+            ShowLogCount();
         }
     }
     public void SaveLogs() {

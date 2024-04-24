@@ -28,6 +28,7 @@
         android:id="@+id/AstroListView"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:layout_marginBottom="110dp"
         android:listSelector="@drawable/selected"
         android:longClickable="true"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -45,10 +46,12 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"></TextView>
+
     <Button
         android:id="@+id/astroAdd"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="500dp"
         android:backgroundTint="@color/stars"
         android:text="@string/plusAdd"
         android:textColor="@color/space"
@@ -59,5 +62,15 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/TitleTextView"
         app:layout_constraintVertical_bias="0.883" />
+
+    <TextView
+        android:id="@+id/ScrollAlertTextView"
+        android:layout_width="200dp"
+        android:layout_height="100dp"
+        android:textColorHighlight="@color/stars"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/astroAdd"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/AstroListView" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

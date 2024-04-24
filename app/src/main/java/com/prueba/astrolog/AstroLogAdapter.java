@@ -45,7 +45,7 @@ public class AstroLogAdapter extends ArrayAdapter {
             fotoImageView.setImageDrawable(context.getDrawable(item.image));
         // Mostrar fecha
         TextView fechaTextView = convertView.findViewById(R.id.AstroTimeTextView);
-        SimpleDateFormat format = new SimpleDateFormat("dd MMMM yy HH:mm");
+        SimpleDateFormat format = new SimpleDateFormat("dd MMMM yyyy HH:mm");
         String fecha = format.format(item.fecha);
         fechaTextView.setText(fecha);
         return convertView;

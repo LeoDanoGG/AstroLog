@@ -96,7 +96,9 @@ public class AddLog extends AppCompatActivity {
                 @Override
                 public void onDateChanged(DatePicker datePicker, int year, int month, int day) {
                 // Hacer algo con la fecha elegida
-                    calendarDay = new Date(year,month,day);
+                    calendarDay.setDate(day);
+                    calendarDay.setMonth(month);
+                    calendarDay.setYear(year);
                 }
             });
         }
@@ -115,6 +117,7 @@ public class AddLog extends AppCompatActivity {
         AddToLog.setOnClickListener(view -> AddLogManager());
     }
     public void AddLogManager() {
+        IconHint.setText("Dia " + calendarDay.getDate() + " Mes " + calendarDay.getMonth() + "Año " + calendarDay.getYear());
         if (!correct) IconHint.setText("Selecciona un icono antes de guardar");
         else if (LogName == null) IconHint.setText("Tienes que guardarlo con nombre");
         else AddLog();

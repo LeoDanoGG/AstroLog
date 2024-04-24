@@ -7,6 +7,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
@@ -71,6 +72,7 @@ public class MainActivity extends AppCompatActivity {
         AstroList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                scrollAlert.setText("Fecha: " + AstroLista.items.get(i).fecha);
                 HideWarn();
             }
         });

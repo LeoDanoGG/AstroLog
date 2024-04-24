@@ -23,6 +23,7 @@ import java.util.Date;
 public class MainActivity extends AppCompatActivity {
 
     ListView AstroList;
+    TextView titleLog;
     TextView removeAlert;
     Astro_List AstroLista;
     Button addButton;
@@ -34,8 +35,10 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         addButton = findViewById(R.id.astroAdd);
         AstroList = findViewById(R.id.AstroListView);
+        titleLog = findViewById(R.id.TitleTextView);
         removeAlert = findViewById(R.id.RemoveAlert);
         LoadLogs();
+        ShowLogCount();
         AddNewLog();
         // Vincular la vista de cada fila a los datos
         adapter = new AstroLogAdapter(this, R.layout.astrolog_item, AstroLista.items);
@@ -58,7 +61,8 @@ public class MainActivity extends AppCompatActivity {
                 AstroLista.items.remove(position);
                 // Notificar al adaptador del cambio
                 adapter.notifyDataSetChanged();
-
+                SaveLogs();
+                ShowLogCount();
                 return true; // Indica que se ha manejado el evento
             }
         });
@@ -68,6 +72,13 @@ public class MainActivity extends AppCompatActivity {
                 HideWarn();
             }
         });
+    }
+    public void ShowLogCount() {
+        try {
+            titleLog.setText("Has registrado " + AstroLista.items.size() + " astros");
+        } catch (Exception e) {
+            titleLog.setText("Has registrado astros");
+        }
     }
     public void HideWarn() {
         removeAlert.setText("");

@@ -41,16 +41,11 @@ public class AstroLogAdapter extends ArrayAdapter {
         TextView nombreTextView = convertView.findViewById(R.id.AstroNameTextView);
         nombreTextView.setText(item.name);
         // Poner la foto
-        try {
             ImageView fotoImageView = convertView.findViewById(R.id.AstroImageView);
             fotoImageView.setImageDrawable(context.getDrawable(item.image));
-        } catch (Exception e) {
-            ImageView fotoImageView = convertView.findViewById(R.id.AstroImageView);
-            fotoImageView.setImageDrawable(context.getDrawable(R.drawable.cometa));
-        }
         // Mostrar fecha
         TextView fechaTextView = convertView.findViewById(R.id.AstroTimeTextView);
-        SimpleDateFormat format = new SimpleDateFormat("dd MMMM yy HH:mm");
+        SimpleDateFormat format = new SimpleDateFormat("dd MMMM yyyy HH:mm");
         String fecha = format.format(item.fecha);
         fechaTextView.setText(fecha);
         return convertView;

@@ -105,6 +105,18 @@ public class MainActivity extends AppCompatActivity {
                 Collections.sort(AstroLista.items, Comparator.comparing(AstroItem::GetName).reversed());
                 adapter.notifyDataSetChanged();
             }
+            else if (filter.contains("Tipo")) {
+                Collections.sort(AstroLista.items, Comparator.comparing(AstroItem::GetType));
+                adapter.notifyDataSetChanged();
+            }
+            else if (filter.contains("antiguos")) {
+                Collections.sort(AstroLista.items, Comparator.comparing(AstroItem::GetCurrentDate));
+                adapter.notifyDataSetChanged();
+            }
+            else if (filter.contains("recientes")) {
+                Collections.sort(AstroLista.items, Comparator.comparing(AstroItem::GetCurrentDate).reversed());
+                adapter.notifyDataSetChanged();
+            }
     }
     /**
      * Muestra el número de registros y avisa si tienes que hacer scroll vertical

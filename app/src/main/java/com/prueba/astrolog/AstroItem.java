@@ -18,4 +18,10 @@ public class AstroItem {
         public String GetName() {
             return this.name;
     }
+        public String GetType() {
+            return this.type;
+        }
+        public Date GetCurrentDate() {
+            return this.fecha;
+        }
 }

@@ -35,18 +35,21 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        // Referencias
         addButton = findViewById(R.id.astroAdd);
         AstroList = findViewById(R.id.AstroListView);
         titleLog = findViewById(R.id.TitleTextView);
         scrollAlert = findViewById(R.id.ScrollAlertTextView);
         removeAlert = findViewById(R.id.RemoveAlert);
+        // Métodos de control de los registros
         LoadLogs();
         ShowLogCount();
         AddNewLog();
-        // Vincular la vista de cada fila a los datos
+        // Vincular la vista a los datos
         adapter = new AstroLogAdapter(this, R.layout.astrolog_item, AstroLista.items);
-        // Vincular el adapta a la vista del listado
+        // Vincular el adapter a la vista del listado
         AstroList.setAdapter(adapter);
+        // Cambio de pantalla
         addButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -54,6 +57,7 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(AddLog);
             }
         });
+        // Cuando dejas pulsado un item
         AstroList.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
@@ -69,6 +73,7 @@ public class MainActivity extends AppCompatActivity {
                 return true; // Indica que se ha manejado el evento
             }
         });
+        // Cuando haces un click corto en cada item
         AstroList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
@@ -77,30 +82,46 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+    /**
+     * Muestra el número de registros y avisa si tienes que hacer scroll vertical
+     */
     public void ShowLogCount() {
         titleLog.setText("Has registrado " + AstroLista.items.size() + " astros");
         if (AstroLista.items.size() > 7) scrollAlert.setText("Sube y baja en la lista para observar todos los registros");
         else scrollAlert.setText("");
     }
-
+    /**
+     * Oculta el mensaje de "registro eliminado"
+     */
     public void HideWarn() {
         removeAlert.setText("");
     }
+
+    /**
+     * Se asegura de guardar los cambios en los registros al cambiar de pantalla
+     */
     @Override
     protected void onDestroy() {
         super.onDestroy();
         SaveLogs();
     }
+
+    /**
+     * Agrega el nuevo registro y actualiza la lista
+     */
         public void AddNewLog() {
         Intent intent = getIntent();
-        Bundle parametros = getIntent().getExtras();
-        if (parametros != null) {
-            Date newDay = (Date) parametros.getSerializable("Day");
+        if (intent != null) {
+            Date newDay = new Date(intent.getLongExtra("Date", 0L));
             AstroLista.items.add(new AstroItem(intent.getIntExtra("Icon",R.drawable.estrella), intent.getStringExtra("Name"), newDay));
             SaveLogs();
             ShowLogCount();
         }
     }
+
+    /**
+     * Guarda los cambios realizados en la lista
+     */
     public void SaveLogs() {
         String json = AstroLista.ToJSON();
         SharedPreferences preferences = getSharedPreferences("Registros", Context.MODE_PRIVATE);
@@ -108,6 +129,10 @@ public class MainActivity extends AppCompatActivity {
         editor.putString("conversaciones", json);
         editor.commit();
     }
+
+    /**
+     * Carga los datos guardados
+     */
     public void LoadLogs() {
         SharedPreferences preferences = getSharedPreferences("Registros", Context.MODE_PRIVATE);
         String json = preferences.getString("conversaciones", null);

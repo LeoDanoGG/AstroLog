@@ -5,7 +5,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.KeyEvent;
@@ -18,6 +17,7 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.TimePicker;
 
+import java.util.Calendar;
 import java.util.Date;
 
 /**
@@ -95,10 +95,10 @@ public class AddLog extends AppCompatActivity {
             dateDP.setOnDateChangedListener(new DatePicker.OnDateChangedListener() {
                 @Override
                 public void onDateChanged(DatePicker datePicker, int year, int month, int day) {
-                // Hacer algo con la fecha elegida
+                // Asignar la fecha al calendarDay
                     calendarDay.setDate(day);
                     calendarDay.setMonth(month);
-                    calendarDay.setYear(year);
+                    calendarDay.setYear(year - 1900); // Se restan 1900 para corregir el formateo
                 }
             });
         }
@@ -107,7 +107,7 @@ public class AddLog extends AppCompatActivity {
         timeTP.setOnTimeChangedListener(new TimePicker.OnTimeChangedListener() {
             @Override
             public void onTimeChanged(TimePicker timePicker, int i, int i1) {
-            // Hacer algo con la hora elegida
+            // Asignar la hora al calendarDay
                 calendarDay.setHours(i);
                 calendarDay.setMinutes(i1);
             }
@@ -116,25 +116,31 @@ public class AddLog extends AppCompatActivity {
         AddToLog = findViewById(R.id.AddButton);
         AddToLog.setOnClickListener(view -> AddLogManager());
     }
+
+    /**
+     * Comprueba que el registro está en orden antes de guardarlo
+     */
     public void AddLogManager() {
-        IconHint.setText("Dia " + calendarDay.getDate() + " Mes " + calendarDay.getMonth() + "Año " + calendarDay.getYear());
         if (!correct) IconHint.setText("Selecciona un icono antes de guardar");
         else if (LogName == null) IconHint.setText("Tienes que guardarlo con nombre");
-        else AddLog();
-
+        else AddLog(); // Agrega el registro
     }
     public void AddLog() {
         int draw = IsAnyTrue(IconSelected);
-        //AstroItem nuevo = new AstroItem(AstroIcons[Icon].getDrawingCacheBackgroundColor(),LogName.getText().toString(), calendarDay);
         Intent GoBack = new Intent(AddLog.this, MainActivity.class);
         int imagen = Icon[draw];
         GoBack.putExtra("Icon", imagen);
         GoBack.putExtra("Name", LogName.getText().toString());
-        Bundle bundle = new Bundle();
-        bundle.putSerializable("Day", calendarDay);
-        GoBack.putExtras(bundle);
+        long miliDate = calendarDay.getTime();
+        GoBack.putExtra("Date", miliDate);
         startActivity(GoBack);
     }
+
+    /**
+     * Comprueba si se ha seleccionado algún icono
+     * @param array es la lista de boolean asociada
+     * @return devuelve la posición del aarray en true
+     */
     public int IsAnyTrue(Boolean[] array) {
         for (int i = 0; i < array.length; i++) {
             if (array[i]) {
@@ -143,6 +149,11 @@ public class AddLog extends AppCompatActivity {
         }
         return -1; // Si no se encuentra ningún valor true en el array, devuelve -1
     }
+
+    /**
+     * Determina cuál es el icono seleccionado y muestra el nombre del icono
+     * @param icon es la posición en el array
+     */
     public void IconManager(int icon) {
         for (int i = 0; i < AstroIcons.length; i++) {
             IconSelected[i] = false;

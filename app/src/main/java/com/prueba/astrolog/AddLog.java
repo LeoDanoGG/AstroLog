@@ -131,6 +131,7 @@ public class AddLog extends AppCompatActivity {
         int imagen = Icon[draw];
         GoBack.putExtra("Icon", imagen);
         GoBack.putExtra("Name", LogName.getText().toString());
+        GoBack.putExtra("Type", hint[draw]);
         long miliDate = calendarDay.getTime();
         GoBack.putExtra("Date", miliDate);
         startActivity(GoBack);

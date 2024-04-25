@@ -77,7 +77,8 @@ public class MainActivity extends AppCompatActivity {
         AstroList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                scrollAlert.setText("Fecha: " + AstroLista.items.get(i).fecha);
+                scrollAlert.setText("Fecha: " + AstroLista.items.get(i).fecha
+                + "\nTipo: " + AstroLista.items.get(i).type);
                 HideWarn();
             }
         });
@@ -111,9 +112,9 @@ public class MainActivity extends AppCompatActivity {
      */
         public void AddNewLog() {
         Intent intent = getIntent();
-        if (intent != null) {
+        if (intent.getStringExtra("Name") != null) {
             Date newDay = new Date(intent.getLongExtra("Date", 0L));
-            AstroLista.items.add(new AstroItem(intent.getIntExtra("Icon",R.drawable.estrella), intent.getStringExtra("Name"), newDay));
+            AstroLista.items.add(new AstroItem(intent.getIntExtra("Icon",R.drawable.estrella), intent.getStringExtra("Name"), intent.getStringExtra("Type"), newDay));
             SaveLogs();
             ShowLogCount();
         }

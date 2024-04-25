@@ -7,14 +7,15 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.Spinner;
 import android.widget.TextView;
 
-import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Date;
 
 /**
@@ -29,6 +30,7 @@ public class MainActivity extends AppCompatActivity {
     TextView removeAlert;
     Astro_List AstroLista;
     Button addButton;
+    Spinner filterSpinner;
     AstroLogAdapter adapter;
     @SuppressLint("MissingInflatedId")
     @Override
@@ -41,6 +43,7 @@ public class MainActivity extends AppCompatActivity {
         titleLog = findViewById(R.id.TitleTextView);
         scrollAlert = findViewById(R.id.ScrollAlertTextView);
         removeAlert = findViewById(R.id.RemoveAlert);
+        filterSpinner = findViewById(R.id.spinner);
         // Métodos de control de los registros
         LoadLogs();
         ShowLogCount();
@@ -77,18 +80,39 @@ public class MainActivity extends AppCompatActivity {
         AstroList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                scrollAlert.setText("Fecha: " + AstroLista.items.get(i).fecha
+                scrollAlert.setText("Fecha: " + AstroLista.items.get(i).fecha + "\n"
                 + "\nTipo: " + AstroLista.items.get(i).type);
                 HideWarn();
             }
         });
+        // Cuando seleccionas el tipo de filtro
+        filterSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+            TextView textView = (TextView) view;
+            Filter(textView.getText().toString());
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {}
+        });
+    }
+    public void Filter(String filter) {
+            if (filter.contains("(A-Z)")) {
+                Collections.sort(AstroLista.items, Comparator.comparing(AstroItem::GetName));
+                adapter.notifyDataSetChanged();
+            }
+            else if (filter.contains("(Z-A)")) {
+                Collections.sort(AstroLista.items, Comparator.comparing(AstroItem::GetName).reversed());
+                adapter.notifyDataSetChanged();
+            }
     }
     /**
      * Muestra el número de registros y avisa si tienes que hacer scroll vertical
      */
     public void ShowLogCount() {
         titleLog.setText("Has registrado " + AstroLista.items.size() + " astros");
-        if (AstroLista.items.size() > 7) scrollAlert.setText("Sube y baja en la lista para observar todos los registros");
+        if (AstroLista.items.size() == 0) scrollAlert.setText("Añade tu primer registro");
+        else if (AstroLista.items.size() > 7) scrollAlert.setText("Sube y baja en la lista para observar todos los registros");
         else scrollAlert.setText("");
     }
     /**

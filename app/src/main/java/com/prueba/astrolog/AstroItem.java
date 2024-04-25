@@ -15,4 +15,7 @@ public class AstroItem {
         this.type = type;
         this.fecha = fecha;
     }
+        public String GetName() {
+            return this.name;
+    }
 }

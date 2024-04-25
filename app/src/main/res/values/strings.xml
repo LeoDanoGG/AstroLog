@@ -2,4 +2,12 @@
     <string name="app_name">AstroLog</string>
     <string name="astro_log">Astro-log</string>
     <string name="plusAdd">+</string>
+    <string-array name="Filtrar">
+        <item>Por defecto</item>
+        <item>Nombre (A-Z)</item>
+        <item>Nombre (Z-A)</item>
+        <item>Más antiguos</item>
+        <item>Más recientes</item>
+        <item>Tipo</item>
+    </string-array>
 </resources>

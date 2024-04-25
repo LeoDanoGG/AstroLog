@@ -122,7 +122,7 @@ public class AddLog extends AppCompatActivity {
      */
     public void AddLogManager() {
         if (!correct) IconHint.setText("Selecciona un icono antes de guardar");
-        else if (LogName == null) IconHint.setText("Tienes que guardarlo con nombre");
+        else if (LogName.length() == 0 && !LogName.getText().toString().isBlank()) IconHint.setText("Tienes que guardarlo con nombre");
         else AddLog(); // Agrega el registro
     }
     public void AddLog() {

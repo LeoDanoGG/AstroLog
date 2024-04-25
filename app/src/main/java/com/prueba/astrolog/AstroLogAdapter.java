@@ -53,9 +53,10 @@ public class AstroLogAdapter extends ArrayAdapter {
         // Obtener la franja horaria
         TimeZone gmt = TimeZone.getDefault();
         int gmtLocal = gmt.getRawOffset();
-        long gmtLog = item.fecha.getTime() - gmtLocal;
+        long gmtLog = item.fecha.getTime() - gmtLocal; // Adaptar la franja horaria
         item.fecha.setTime(gmtLog);
         calendar.setTimeZone(gmt);
+        // Configurar el formato de la fecha
         if (year >= 2000) {
             // Si es a partir del 2000
             SimpleDateFormat format = new SimpleDateFormat("dd MMMM yyyy HH:mm");

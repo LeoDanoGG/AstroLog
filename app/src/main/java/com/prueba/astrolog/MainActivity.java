@@ -80,8 +80,9 @@ public class MainActivity extends AppCompatActivity {
         AstroList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                scrollAlert.setText("Fecha: " + AstroLista.items.get(i).fecha + "\n"
-                + "\nTipo: " + AstroLista.items.get(i).type);
+                scrollAlert.setText("Nombre: " + AstroLista.items.get(i).name + "\n"
+                                    + "\nTipo: " + AstroLista.items.get(i).type + "\n"
+                                    + "\nFecha:" + AstroLista.items.get(i).fecha);
                 HideWarn();
             }
         });
@@ -93,10 +94,13 @@ public class MainActivity extends AppCompatActivity {
             Filter(textView.getText().toString());
             }
             @Override
-            public void onNothingSelected(AdapterView<?> adapterView) {}
+            public void onNothingSelected(AdapterView<?> adapterView) {
+                Filter("(A-Z)");
+            }
         });
     }
     public void Filter(String filter) {
+        ShowLogCount();
             if (filter.contains("(A-Z)")) {
                 Collections.sort(AstroLista.items, Comparator.comparing(AstroItem::GetName));
                 adapter.notifyDataSetChanged();
@@ -124,7 +128,7 @@ public class MainActivity extends AppCompatActivity {
     public void ShowLogCount() {
         titleLog.setText("Has registrado " + AstroLista.items.size() + " astros");
         if (AstroLista.items.size() == 0) scrollAlert.setText("Añade tu primer registro");
-        else if (AstroLista.items.size() > 7) scrollAlert.setText("Sube y baja en la lista para observar todos los registros");
+        else if (AstroLista.items.size() > 7) scrollAlert.setText("\nSube y baja en la lista para observar todos los registros");
         else scrollAlert.setText("");
     }
     /**

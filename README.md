@@ -1,43 +1,37 @@
 ![Build Status](https://cdn6.aptoide.com/imgs/1/e/2/1e20de3284b3cdcc2ca2a12d81b76641_icon.png?w=128)
 # **ASTRO LOG**
-##### *Una app para los fans del cosmos*.
+##### *An app for cosmos enthusiasts*.
 ##### Developer: *Dano GG*
 ---
-Una app que registra los astros que registres en el firmamento.
-> La app está desarrollada en `Android Studio` utilizando lenguaje `Java`.
-Se compone de dos pantallas: la pantalla inicial, donde puedes ver la lista de registros que tienes guardada (`Log activity`) y la pantalla de agregar un registro (`AddLog activity`).
+An app that logs the celestial bodies you spot in the sky.
+> The app is developed in `Android Studio` using the `Java` language.
+
+It consists of two screens: the main screen, where you can view your saved list of entries (`Log activity`) and the screen to add a new entry (`AddLog activity`).
 
 ## Astro-Log
-Los registros que guardes se mostrarán con su nombre, tipo de astro y la fecha de guardado.
-Tienes la opción de registrar astros como: 
+The entries you save will be displayed with their name, type of celestial body, and the date they were saved.
+You have the option to register objects such as: 
+
 |![Build Status](https://cdn-icons-png.freepik.com/256/15142/15142734.png?semt=ais_hybrid)|![Build Status](https://icons.iconarchive.com/icons/microsoft/fluentui-emoji-3d/256/Comet-3d-icon.png)|
 | ------- | ------- |
-| Estrellas :star: | Asteroides o cometas ☄️|
-| Lunas 🌕| Nebulosas ☁️|
-| Planetas 🪐| Constelaciones ✨|
-| Satélites 🛰️| Estrellas fugaces 🌠 |
+| Stars :star: | Asteroids or comets ☄️|
+| Moons 🌕| Nebulae ☁️|
+| Planets 🪐| Constellations ✨|
+| Satellites 🛰️| Shooting stars 🌠 |
 
-## Objeto AstroItem
-Los registros se guardan mediante una clase bastante sencilla llamada `AstroItem`.
-```
+## AstroItem Object
+Entries are saved using a fairly simple class called `AstroItem`.
+
+```java
 public class AstroItem {
-    // Atributos
+    // Attributes
     public int image;
     public String name;
-    public Date fecha;
+    public Date date;
     // Constructor
-    public AstroItem(int image, String name, Date fecha) {
+    public AstroItem(int image, String name, Date date) {
         this.image = image;
         this.name = name;
-        this.fecha = fecha;
+        this.date = date;
     }
 }
-```
-## Fecha y formato
-La fecha de cada objeto ==AstroLog== se guarda creando un `new Date()`
-y después editándole mediante un `TimePicker` y un `DatePicker`.
-
-| TimePicker (dentro del `xml`)| DatePicker (dentro del `xml`)|
-| ------- | ------- |
-| Modifica la hora | Modifica la fecha |
-| Formato de 24 horas (hora, minutos) | Formato europeo (día, mes y año) |

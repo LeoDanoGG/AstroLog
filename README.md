@@ -12,9 +12,8 @@ It consists of two screens: the main screen, where you can view your saved list 
 The entries you save will be displayed with their name, type of celestial body, and the date they were saved.
 You have the option to register objects such as: 
 
-|![Build Status](https://cdn-icons-png.freepik.com/256/15142/15142734.png?semt=ais_hybrid)|![Build Status](https://icons.iconarchive.com/icons/microsoft/fluentui-emoji-3d/256/Comet-3d-icon.png)|
-| ------- | ------- |
 | Stars :star: | Asteroids or comets ☄️|
+| ------- | ------- |
 | Moons 🌕| Nebulae ☁️|
 | Planets 🪐| Constellations ✨|
 | Satellites 🛰️| Shooting stars 🌠 |
